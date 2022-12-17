@@ -24,6 +24,8 @@ class MovieList extends HTMLElement {
     const filteredMovie = this._movies.filter(movie => movie.backdrop_path);
     filteredMovie.forEach((movie) => {
       const movieItemElement = document.createElement('movie-item');
+
+      //masih bisa dipersingkat, sama dengan toplistmovies
       movieItemElement.movie = movie;
 
       DataExtends.getMovieDetail(movie.id)

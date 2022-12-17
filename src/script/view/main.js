@@ -2,30 +2,37 @@ import '../component/movielist';
 import '../component/movielisttop';
 import '../component/paginations';
 import '../component/movieslider';
+import '../component/movielistfound';
+import '../component/searchqueryinput';
+
 import DataSource from '../data/data-source';
+import DataSearch from '../component/datasearchquery';
 
 const main = () => {
   const movieListElement = document.querySelector('movie-list');
   const topListElement = document.querySelector('top-list');
   const pageElement = document.querySelector('movie-pagination');
   const movieSlider = document.querySelector('movie-slider');
+  const movieSearch = document.querySelector('found-list');
+  const searchElement = document.querySelector('query-input');
+
   
 
-
-
-  const onButtonSearchClicked = () => {
+  const onDefault_pageClick = () => {
     DataSource.searchMovie(pageElement.value)
       .then(renderResult)
-      .catch(fallbackResult)
+      .catch(e => console.log(e))
   };
 
-
-
+  const onSearchMovieButton = () => {
+    DataSearch.searchMovie(searchElement.value)
+      .then(renderSearch)
+      .catch(fallbackResult)
+  }
 
 
   const renderResult = results => {
-    // console.log(results);
-  
+      
     const popularGenre = () =>{
       return results[0].map(movie => {
         return {
@@ -54,11 +61,22 @@ const main = () => {
       });
     };    
     const trendMovies = trendMovie();
-    movieSlider.sliders = trendMovies;
-
-
-    
+    movieSlider.sliders = trendMovies; 
   };
+
+
+
+  const renderSearch = results => {
+    const searchQuery = () =>{
+      return results[0].map(movie => {
+        return {
+          ...movie, genre_ids: movie.genre_ids.map(number => results[1].find(genreCode => genreCode.id === number).name)
+        }
+      });
+    };    
+    const moviesbyQuery = searchQuery();
+    movieSearch.founds = moviesbyQuery;
+  }
 
 
   const fallbackResult = message => {
@@ -67,17 +85,19 @@ const main = () => {
 
 
 
-
-
-
   window.onload = () => {
-    onButtonSearchClicked();    
+    onDefault_pageClick();    
   }
 
-  
   pageElement.pageMovie = function () {
-    onButtonSearchClicked();
-    }
+    onDefault_pageClick();
+  }
+
+  searchElement.search = function () { 
+    onSearchMovieButton()
+  };
+
+  
 
 
 };

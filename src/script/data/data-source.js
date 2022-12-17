@@ -1,12 +1,9 @@
 import axios from 'axios';
 
-
 class DataSource {
   static searchMovie(page) {
     const baseUrl = 'https://api.themoviedb.org/3';
     const api_key = '2549c839db5e074878d2577ca548bc87';
-    // const page = this._page;
-    // const sort_by = 'release_date.desc';
 
     return new Promise ((resolve) => {
       const requestPopular = axios.get(`${baseUrl}/movie/popular?api_key=${api_key}&page=${page} `);

@@ -39,27 +39,40 @@
         <li class="nav-item" role="presentation">
           <button class="nav-link fs-5 fw-semibold" id="favorite-tab" data-bs-toggle="tab" data-bs-target="#favorite-tab-pane" type="button" role="tab" aria-controls="favorite-tab-pane" aria-selected="false">Favorite Movie</button>
         </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fs-5 fw-semibold" id="found-tab" data-bs-toggle="tab" data-bs-target="#found-tab-pane" type="button" role="tab" aria-controls="found-tab-pane" aria-selected="false">Search Movie</button>
+        </li>
       </ul>
 
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="popular-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+        <div class="tab-pane fade show active" id="popular-tab-pane" role="tabpanel" aria-labelledby="popular-tab" tabindex="0">
 
           <!-- popular movies -->
           <section class="movie-section" id="popular-movies">
-            <movie-pagination></movie-pagination>
-            <movie-list></movie-list>            
+            <movie-list></movie-list>
+            <movie-pagination></movie-pagination>          
           </section> 
           <!-- end of popular movies  -->
         </div>
   
-        <div class="tab-pane fade" id="favorite-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        <div class="tab-pane fade" id="favorite-tab-pane" role="tabpanel" aria-labelledby="favorite-tab" tabindex="0">
 
           <!-- Top List movies -->
           <section class="movie-section" id="top-movies">
-            <!-- <h2>Favorite Movies</h2> -->
             <top-list></top-list>
           </section> 
           <!-- end of Top List movies  -->
+
+        </div>
+
+        <div class="tab-pane fade" id="found-tab-pane" role="tabpanel" aria-labelledby="search-tab" tabindex="0">
+
+          <!-- Search movies -->
+          <section class="movie-section" id="search-movies">
+            <query-input></query-input>
+            <found-list></found-list>
+          </section> 
+          <!-- end of search movies  -->
 
         </div>
 

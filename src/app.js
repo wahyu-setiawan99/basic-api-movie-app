@@ -9,6 +9,8 @@ import './script/component/movielisttop';
 import './script/component/moviecrews';
 import './script/component/paginations';
 import './script/component/movieslider';
+import './script/component/movielistfound';
+import './script/component/searchqueryinput';
 
 
 

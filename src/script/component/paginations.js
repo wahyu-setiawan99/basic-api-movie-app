@@ -18,7 +18,7 @@ class Pagination extends HTMLElement {
   render() {
     this.innerHTML = `
     <div class="movie-pagination">
-      <input id="gotopage" type="number" placeholder="Go to page ...">
+      <input id="gotopage" type="number" placeholder="Go to page (max 500)">
       <button id="gotopage-button" type="submit">Go!</button>
     </div>
     `;

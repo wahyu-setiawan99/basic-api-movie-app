@@ -2,7 +2,7 @@ import './crewitem';
 
 class MovieCrews extends HTMLElement {
   set crews(crews) {
-    this._crews = crews;    
+    this._crews = crews;
     this.render();
   }
 
@@ -24,8 +24,6 @@ class MovieCrews extends HTMLElement {
       movieCrews.appendChild(crewItemElement);
 
     }
-
-
 
   }
 

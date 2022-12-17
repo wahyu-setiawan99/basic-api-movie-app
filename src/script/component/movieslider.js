@@ -1,3 +1,4 @@
+import DataExtends from './getdetailmovies';
 import './slideritem';
 
 class MovieSlider extends HTMLElement {
@@ -23,26 +24,6 @@ class MovieSlider extends HTMLElement {
             <p>${this._sliders[0].overview}.</p>
           </div>
         </div>
-      
-      
-      
-        <!-- <div class="carousel-item">
-          <img src=https://image.tmdb.org/t/p/original${this._sliders[1].backdrop_path} class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>${this._sliders[1].title}</h3>
-            <p>${this._sliders[1].overview}.</p>
-          </div>
-        </div>
-      
-
-      
-        <div class="carousel-item">
-          <img src=https://image.tmdb.org/t/p/original${this._sliders[2].backdrop_path} class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>${this._sliders[2].title}</h3>
-            <p>${this._sliders[2].overview}.</p>
-          </div>
-        </div> -->
 
       </div>
 
@@ -72,13 +53,19 @@ class MovieSlider extends HTMLElement {
 
     for (let i=0; i<10 ; i++) {
       clickedTitle[i].addEventListener('click', ()=> {
-        previewMovie.preview = this._sliders[i];
+        
+        DataExtends.getMovieDetail(this._sliders[i].id)
+        .then(results => {
+          const movieDetails =  results[0].data;
+          const videoKeys = results[1].data.results[0] === undefined?' ': results[1].data.results[0].key;
+          const listActors = results[2].data.cast;
 
 
+          previewMovie.preview = [this._sliders[i], movieDetails, videoKeys, listActors];
+
+        })
 
         previewMovie.scrollIntoView();
-
-        // console.log(this._sliders[i])
 
       })
 

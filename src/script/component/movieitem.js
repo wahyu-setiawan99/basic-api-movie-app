@@ -45,13 +45,7 @@ class MovieItem extends HTMLElement {
     const moviePreviewSection = document.querySelector('movie-preview');
     
 
-    moviePreviewSection.preview = this._movie;
-    moviePreviewSection.detailMovie = [this._detailMovie, this._videoKeys];
-
-
-    const movieCrews = document.querySelector('movie-crews');
-    
-    movieCrews.crews = this._listActors;
+    moviePreviewSection.preview = [this._movie, this._detailMovie, this._videoKeys, this._listActors];
 
 
     moviePreviewSection.scrollIntoView();

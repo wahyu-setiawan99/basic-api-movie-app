@@ -135,7 +135,7 @@ movie-slider {
   max-width: 95%;
 }
 
-movie-list, top-list {
+movie-list, top-list, found-list {
   border-top: 8px wheat solid;
   margin: 0 auto;
   margin-bottom: 24px;
@@ -254,6 +254,7 @@ movie-item {
   flex-direction: row;
   padding: 12px;
   justify-content: center;
+  margin-bottom: 24px;
 }
 
 #gotopage {
@@ -261,9 +262,9 @@ movie-item {
   border: 1px white solid;
   border-radius: 4px;
   color: white;
-  padding: 4px 8px;
+  padding: 0px 8px;
   margin: 0 8px;
-  width: 20%;
+  width: 15%;
 }
 
 #gotopage-button {
@@ -277,10 +278,44 @@ movie-item {
   background-color: red;
   border: 2px red solid;
 }
-
-
-
 /* end of movie pagination */
+
+
+
+
+
+
+
+/* movie search by query */
+.movie-search-query {
+  display: flex;
+  flex-direction: row;
+  padding: 12px;
+  justify-content: center;
+}
+
+#searchbyquery {
+  background-color: transparent;
+  border: 1px white solid;
+  border-radius: 12px;
+  color: white;
+  padding: 4px 8px;
+  margin: 0 8px;
+  width: 40%;
+}
+
+#searchquery-button {
+  background-color: black;
+  font-weight: 500;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+#searchquery-button:hover {
+  background-color: red;
+  border: 2px red solid;
+}
+/* end of movie search by query */
 
 
 
