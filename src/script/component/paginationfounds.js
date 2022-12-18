@@ -11,6 +11,7 @@ class PageFounds extends HTMLElement {
     this.innerHTML = `
     <div id="display-current_page-founds">Current page: <span id="current_page-founds">1</span></div>
     <div class="founds-pagination">
+      <button id="first_page-button-founds">&laquo;&laquo;</button>
       <button id="previous-button-founds">&laquo;</button>
       <input value="1" type="number" id="display_input-page" min="1"></input>
       <button id="next-button-founds">&raquo;</button>
@@ -20,6 +21,7 @@ class PageFounds extends HTMLElement {
 
 
     const sectionContainer = document.querySelector('.section-container');
+    const firstPageBtn = document.querySelector('#first_page-button-founds');
     const prevPageBtn = document.querySelector('#previous-button-founds');
     const nextPageBtn = document.querySelector('#next-button-founds');
     const gotopageFound = document.querySelector('#gotopage-founds')
@@ -27,6 +29,13 @@ class PageFounds extends HTMLElement {
     const currentPage = document.querySelector('#current_page-founds');
 
     let count = 1;
+
+    firstPageBtn.addEventListener('click', ()=> {
+      count = 1;
+      displayInputPage.value = count;
+      currentPage.innerText = count;
+      this.clickEvent();
+    });    
 
     prevPageBtn.addEventListener('click', ()=> {
       if (count > 1) {
@@ -60,7 +69,7 @@ class PageFounds extends HTMLElement {
       } else {
         count = displayInputPage.value;
       }
-      
+
       currentPage.innerText = count;
 
       this.clickEvent();

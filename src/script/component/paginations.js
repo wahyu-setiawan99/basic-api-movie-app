@@ -12,6 +12,7 @@ class Pagination extends HTMLElement {
     this.innerHTML = `
     <div id="display-current_page-movies">Current page: <span id="current_page-movies">1</span></div>
     <div class="movie-pagination">
+      <button id="first_page-button-movies">&laquo;&laquo;</button>
       <button id="previous-button-movies">&laquo;</button>
       <input id="display_input-movies" type="number" value="1" min="1">
       <button id="next-button-movies">&raquo;</button>
@@ -20,6 +21,7 @@ class Pagination extends HTMLElement {
     `;
 
     const sectionContainer = document.querySelector('.section-container');
+    const firstPageBtn = document.querySelector('#first_page-button-movies');
     const prevPageBtn = document.querySelector('#previous-button-movies');
     const nextPageBtn = document.querySelector('#next-button-movies');
     const gotopageMovies = document.querySelector('#gotopage-movies')
@@ -28,6 +30,13 @@ class Pagination extends HTMLElement {
 
 
     let count = 1;
+
+    firstPageBtn.addEventListener('click', ()=> {
+      count = 1;
+      displayInputPage.value = count;
+      currentPage.innerText = count;
+      this.clickEvent();
+    })
 
     prevPageBtn.addEventListener('click', ()=> {
       if (count > 1) {

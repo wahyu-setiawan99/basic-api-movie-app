@@ -47,7 +47,7 @@ class MoviePreview extends HTMLElement {
               </div>
               <div class="hd-logo">
                 <p>HD</p>
-              </div>                                      
+              </div>
             </div>
 
             </li>
