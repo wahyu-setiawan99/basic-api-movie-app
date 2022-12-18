@@ -7,9 +7,9 @@ class MoviePreview extends HTMLElement {
     this._keyYotube = preview[2];
     this._actorsPreview = preview[3];
 
-    this._ratingVote = preview[0].vote_average.toFixed(1);
-    this._genres = preview[0].genre_ids.map(genre => `<span>${genre}</span>`).join('|');
-    this._releaseDate = moment(preview[0].release_date).format('MMM Do, YYYY');
+    this._ratingVote = this._preview.vote_average.toFixed(1);
+    this._genres = this._preview.genre_ids.map(genre => `<span>${genre}</span>`).join('|');
+    this._releaseDate = moment(this._preview.release_date).format('MMM Do, YYYY');
     
     if (this._detailMovie.runtime > 60) {
       this._duration = moment.utc(
@@ -27,6 +27,7 @@ class MoviePreview extends HTMLElement {
   render () {
     this.innerHTML = `
       <div class="movie-details" style="background-image: url(https://image.tmdb.org/t/p/original${this._preview.backdrop_path})">
+        <button type="button" class="btn-close btn-close-dark" aria-label="Close"></button>
         <div class="details-wrapper">
           <ul>
             <li><h1>${this._preview.title}</h1></li>
@@ -50,7 +51,7 @@ class MoviePreview extends HTMLElement {
             </div>
 
             </li>
-            <li><p>Genre: ${this._genres}</p></li>
+            <li><p>Genre : ${this._genres}</p></li>
             <li>
               <div class="preview_description">
                 <p>${this._preview.overview}</p>
@@ -79,19 +80,22 @@ class MoviePreview extends HTMLElement {
      
       `;
 
-      // setTimeout(() => {
-      //   const listCrews = document.querySelector('movie-crews');
-      //   listCrews.crews = this._actorsPreview;
-      //   // console.log(this._actorsPreview) mohon dijadikan async
-        
-      // }, 100);
-
       const percent = ( this._preview.vote_average / 10) * 100;
       const starPercent = `${percent}%`;
       this.querySelector('.star-inner').style.width = starPercent;
 
       const listCrews = document.querySelector('movie-crews');
       listCrews.crews = this._actorsPreview;
+
+      const closeButton = document.querySelector('.btn-close');
+      closeButton.addEventListener('click', ()=> {
+        this.innerHTML = ``;
+        const sectionContainer = document.querySelector('.section-container');
+        
+        setTimeout(() => {
+          sectionContainer.scrollIntoView();          
+        }, 100);
+      })
   }
 
 }

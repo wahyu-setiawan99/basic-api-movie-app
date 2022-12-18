@@ -136,6 +136,7 @@ movie-slider {
 }
 
 movie-list, top-list, found-list {
+  min-height: 100vh;
   border-top: 8px wheat solid;
   margin: 0 auto;
   margin-bottom: 24px;
@@ -244,49 +245,13 @@ movie-item {
 
 
 
-
-
-
-
-/* movie pagination */
-.movie-pagination {
-  display: flex;
-  flex-direction: row;
-  padding: 12px;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-#gotopage {
-  background-color: transparent;
-  border: 1px white solid;
-  border-radius: 4px;
-  color: white;
-  padding: 0px 8px;
-  margin: 0 8px;
-  width: 15%;
-}
-
-#gotopage-button {
-  background-color: black;
-  font-weight: 500;
-  padding: 6px;
-  border-radius: 6px;
-}
-
-#gotopage-button:hover {
-  background-color: red;
-  border: 2px red solid;
-}
-/* end of movie pagination */
-
-
-
-
-
-
-
 /* movie search by query */
+query-input p {
+  display: block;
+  text-align: center;
+}
+
+
 .movie-search-query {
   display: flex;
   flex-direction: row;
@@ -321,11 +286,81 @@ movie-item {
 
 
 
+
+
+
+/* pagination movies */
+pagination-founds, movie-pagination {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+#display-current_page-founds, #display-current_page-movies  {
+  padding-left: 12px;
+  padding-bottom: 24px;
+  font-size: 20px;
+}
+
+#current_page-founds, #current_page-movies {
+  font-weight: 600;
+
+}
+
+.founds-pagination, .movie-pagination {
+  display: flex;
+  flex-direction: row;
+}
+
+.founds-pagination button, .movie-pagination button {
+  color: white;
+  background-color: black;
+  padding: 4px 12px;
+  margin: 0 8px;
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+.founds-pagination button:hover, .movie-pagination button:hover {
+  background-color: red;
+  border: 2px red solid;
+  
+}
+
+#display_input-page, #display_input-movies  {
+  padding: 8px;
+  border: 1px white solid;
+  text-align: center;
+  border-radius: 6px;
+  background-color: transparent;
+  max-width: 70px;
+}
+
+/* end of pagination movies */
+
+
+
+
+
+
+
 /* movie preview section */
 movie-preview {
   display: block;
   width: 100%;
-  border-top: 8px wheat solid;
+  padding: 16px 24px;
+  background-color: black;
+  position: relative;
+}
+
+movie-preview .btn-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 32px;
+  backdrop-filter: blur(30px);
+  background-color: white;
+  border: 2px black solid;
 }
 
 .movie-details {
@@ -357,13 +392,6 @@ movie-preview {
   padding: 4px 8px;
   margin-left: 2px;
   text-align: center;
-  cursor: pointer;
-
-}
-
-.details-wrapper li span:hover{
-  color: red;
-
 }
 
 .details-wrapper h1 {
@@ -529,10 +557,10 @@ crew-item .actor-pictures img {
 
 
 /* footer */
-.line-separator {
+/* .line-separator {
   background-color: wheat;
   padding: 6px;
-}
+} */
 
 .footer-section {
   background-color: rgb(57, 45, 45);

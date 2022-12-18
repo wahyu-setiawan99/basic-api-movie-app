@@ -47,8 +47,12 @@ class MovieItem extends HTMLElement {
 
     moviePreviewSection.preview = [this._movie, this._detailMovie, this._videoKeys, this._listActors];
 
+    setTimeout(() => {
+      moviePreviewSection.scrollIntoView();
+    }, 200);
 
-    moviePreviewSection.scrollIntoView();
+
+    
 
 
 

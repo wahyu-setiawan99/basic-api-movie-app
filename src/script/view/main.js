@@ -4,9 +4,10 @@ import '../component/paginations';
 import '../component/movieslider';
 import '../component/movielistfound';
 import '../component/searchqueryinput';
+import '../component/paginationfounds';
 
 import DataSource from '../data/data-source';
-import DataSearch from '../component/datasearchquery';
+import DataSearch from '../data/datasearchquery';
 
 const main = () => {
   const movieListElement = document.querySelector('movie-list');
@@ -15,7 +16,7 @@ const main = () => {
   const movieSlider = document.querySelector('movie-slider');
   const movieSearch = document.querySelector('found-list');
   const searchElement = document.querySelector('query-input');
-
+  const pageSearchQuery = document.querySelector('pagination-founds');
   
 
   const onDefault_pageClick = () => {
@@ -25,7 +26,18 @@ const main = () => {
   };
 
   const onSearchMovieButton = () => {
-    DataSearch.searchMovie(searchElement.value)
+    const diffKeyword = () => {
+      if (searchElement.value.length > 0) {
+        return searchElement.value;
+      } else {
+        return 'dawdawdawdawdawdadaddawdawdaw'
+      }
+    }
+
+    const searchPage = pageSearchQuery.value;
+
+    const queryKeyword = diffKeyword();    
+    DataSearch.searchMovie(queryKeyword, searchPage)
       .then(renderSearch)
       .catch(fallbackResult)
   }
@@ -80,7 +92,7 @@ const main = () => {
 
 
   const fallbackResult = message => {
-    movieListElement.renderError(message);
+    movieSearch.renderError(message);
   };
 
 
@@ -89,13 +101,17 @@ const main = () => {
     onDefault_pageClick();    
   }
 
-  pageElement.pageMovie = function () {
+  pageElement.clickEvent = function () {
     onDefault_pageClick();
   }
 
   searchElement.search = function () { 
     onSearchMovieButton()
   };
+
+  pageSearchQuery.clickEvent = function () {
+    onSearchMovieButton();    
+  }
 
   
 

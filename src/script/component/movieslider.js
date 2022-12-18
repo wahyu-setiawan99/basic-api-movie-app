@@ -1,4 +1,4 @@
-import DataExtends from './getdetailmovies';
+import DataExtends from '../data/getdetailmovies';
 import './slideritem';
 
 class MovieSlider extends HTMLElement {
@@ -65,8 +65,9 @@ class MovieSlider extends HTMLElement {
 
         })
 
-        previewMovie.scrollIntoView();
-
+        setTimeout(() => {
+          previewMovie.scrollIntoView();
+        }, 400);
       })
 
     }

@@ -16,13 +16,10 @@ class DataSearch {
           const responseMoviebyQuery = responseJson[0].data.results;
           const responseGenre = responseJson[1].data.genres;
 
-
-          if (responseMoviebyQuery) {
+          if (responseMoviebyQuery[0]) {
             resolve([responseMoviebyQuery, responseGenre]);
           } else {
-            reject(e => {
-              console.log(e);
-            })
+            reject(`no results found!`);
           }
         })
       )

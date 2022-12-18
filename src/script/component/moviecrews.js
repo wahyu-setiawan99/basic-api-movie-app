@@ -25,6 +25,12 @@ class MovieCrews extends HTMLElement {
 
     }
 
+    const closeButton = document.querySelector('.btn-close');
+      closeButton.addEventListener('click', ()=> {
+        this.innerHTML = ``;
+        
+      })
+
   }
 
 }

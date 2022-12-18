@@ -1,4 +1,4 @@
-import DataExtends from './getdetailmovies';
+import DataExtends from '../data/getdetailmovies';
 import './movieitem';
 
 
@@ -8,12 +8,10 @@ class TopMovieList extends HTMLElement {
     this.render();
   }
 
-  
-
   render() {
     this.innerHTML = ``;
-    const filteredMovie = this._topmovies.filter(movie => movie.backdrop_path);
-    filteredMovie.forEach(async(topmovie) => {
+    const filteredMovie = this._topmovies.filter(movie => movie.backdrop_path && movie.poster_path);
+    filteredMovie.forEach(topmovie => {
       const topItemElement = document.createElement('movie-item');
       topItemElement.movie = topmovie;
 

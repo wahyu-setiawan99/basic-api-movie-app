@@ -1,16 +1,21 @@
-import DataExtends from './getdetailmovies';
+import DataExtends from '../data/getdetailmovies';
 import './movieitem';
 
 class MovieFound extends HTMLElement {
   set founds (founds) {
     this._founds = founds;
     this.render();
+  }
 
+  renderError(message) {
+    this.innerHTML = ``;
+    this.innerHTML += `<h3>${message}</h3>`;
   }
 
   render() {
     this.innerHTML = ``;
-    this._founds.forEach(found => {
+    const filteredMovie = this._founds.filter(movie => movie.backdrop_path && movie.poster_path && movie.genre_ids[0]);
+    filteredMovie.forEach(found => {
       const movieItemElement = document.createElement
       ('movie-item');
 

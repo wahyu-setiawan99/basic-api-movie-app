@@ -15,6 +15,7 @@ class QueryInput extends HTMLElement {
 
   render() {
     this.innerHTML=`
+    
     <div class="movie-search-query">
       <input id="searchbyquery" type="text" placeholder="Search movie ...">
       <button id="searchquery-button" type="submit">Search</button>
@@ -22,8 +23,7 @@ class QueryInput extends HTMLElement {
     `;
 
 
-    this.querySelector('#searchquery-button').addEventListener('click', this._search)
-    
+    this.querySelector('#searchquery-button').addEventListener('click', this._search);
 
   }
 

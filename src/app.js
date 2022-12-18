@@ -11,6 +11,7 @@ import './script/component/paginations';
 import './script/component/movieslider';
 import './script/component/movielistfound';
 import './script/component/searchqueryinput';
+import './script/component/paginationfounds';
 
 
 

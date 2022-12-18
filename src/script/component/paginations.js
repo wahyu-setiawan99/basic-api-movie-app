@@ -3,29 +3,73 @@ class Pagination extends HTMLElement {
     this.render();
   }
 
-  set pageMovie (pageMovie) {
-    this._pageMovie = pageMovie;
-    this.render();
-  }
-
   get value() {
-    return this.querySelector('#gotopage').value;
+    return this.querySelector('#display_input-movies').value;
   }
-
-
 
 
   render() {
     this.innerHTML = `
+    <div id="display-current_page-movies">Current page: <span id="current_page-movies">1</span></div>
     <div class="movie-pagination">
-      <input id="gotopage" type="number" placeholder="Go to page (max 500)">
-      <button id="gotopage-button" type="submit">Go!</button>
+      <button id="previous-button-movies">&laquo;</button>
+      <input id="display_input-movies" type="number" value="1" min="1">
+      <button id="next-button-movies">&raquo;</button>
+      <button id="gotopage-movies" type="submit">Go!</button>
     </div>
     `;
 
-    
-    
-    this.querySelector('#gotopage-button').addEventListener('click', this._pageMovie);
+    const sectionContainer = document.querySelector('.section-container');
+    const prevPageBtn = document.querySelector('#previous-button-movies');
+    const nextPageBtn = document.querySelector('#next-button-movies');
+    const gotopageMovies = document.querySelector('#gotopage-movies')
+    const displayInputPage = document.querySelector('#display_input-movies');
+    const currentPage = document.querySelector('#current_page-movies');
+
+
+    let count = 1;
+
+    prevPageBtn.addEventListener('click', ()=> {
+      if (count > 1) {
+        count = count - 1;
+      } else {
+        count = 1
+      }
+      displayInputPage.value = count;
+      currentPage.innerText = count;
+      this.clickEvent();
+    });
+
+    nextPageBtn.addEventListener('click', ()=> {
+      count = parseInt(count) + 1;
+
+      displayInputPage.value = count;
+      currentPage.innerText = count;
+      this.clickEvent();
+
+      
+        
+        setTimeout(() => {
+          sectionContainer.scrollIntoView();          
+        }, 100);
+
+    });
+
+    gotopageMovies.addEventListener('click', ()=> {
+      if (displayInputPage.value < 1) {
+        count = 1;
+      } else {
+        count = displayInputPage.value;
+      }
+      
+      currentPage.innerText = count;
+
+      this.clickEvent();
+        
+        setTimeout(() => {
+          sectionContainer.scrollIntoView();          
+        }, 100);
+    });
 
   }
 }

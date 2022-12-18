@@ -1,5 +1,6 @@
+import DataExtends from '../data/getdetailmovies';
 import './movieitem';
-import DataExtends from './getdetailmovies';
+
 
 class MovieList extends HTMLElement {
   set movies(movies) {
@@ -21,8 +22,8 @@ class MovieList extends HTMLElement {
 
   render() {
     this.innerHTML = ``;
-    const filteredMovie = this._movies.filter(movie => movie.backdrop_path);
-    filteredMovie.forEach((movie) => {
+    const filteredMovie = this._movies.filter(movie => movie.backdrop_path && movie.poster_path);
+    filteredMovie.forEach(movie => {
       const movieItemElement = document.createElement('movie-item');
 
       //masih bisa dipersingkat, sama dengan toplistmovies
