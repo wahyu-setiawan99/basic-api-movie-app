@@ -5,6 +5,7 @@ import '../component/movieslider';
 import '../component/movielistfound';
 import '../component/searchqueryinput';
 import '../component/paginationfounds';
+import '../component/crewitem';
 
 import DataSource from '../data/data-source';
 import DataSearch from '../data/datasearchquery';
@@ -41,6 +42,9 @@ const main = () => {
       .then(renderSearch)
       .catch(fallbackResult)
   }
+
+
+  
 
 
   const renderResult = results => {
@@ -97,6 +101,8 @@ const main = () => {
 
 
 
+
+
   window.onload = () => {
     onDefault_pageClick();    
   }
@@ -112,10 +118,7 @@ const main = () => {
   pageSearchQuery.clickEvent = function () {
     onSearchMovieButton();    
   }
-
   
-
-
 };
 
 export default main;

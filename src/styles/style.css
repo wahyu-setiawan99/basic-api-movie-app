@@ -253,6 +253,7 @@ query-input p {
 
 
 .movie-search-query {
+  position: relative;
   display: flex;
   flex-direction: row;
   padding: 12px;
@@ -260,6 +261,7 @@ query-input p {
 }
 
 #searchbyquery {
+  
   background-color: transparent;
   border: 1px white solid;
   border-radius: 12px;
@@ -270,6 +272,7 @@ query-input p {
 }
 
 #searchquery-button {
+  
   background-color: black;
   font-weight: 500;
   padding: 12px;
@@ -279,6 +282,20 @@ query-input p {
 #searchquery-button:hover {
   background-color: red;
   border: 2px red solid;
+}
+
+#deletequery-button {
+  position: absolute;
+  right: 33%;
+  top: 23%;
+  background-color: transparent;
+  border: 2px transparent solid;
+  font-size: 24px;
+}
+
+
+#deletequery-button i:hover {
+  color: red;
 }
 /* end of movie search by query */
 
@@ -472,7 +489,7 @@ movie-preview .btn-close {
   flex-direction: row;
 }
 
-.released-preview, .duration-preview {
+#language-preview, #released-preview, #duration-preview {
   padding: 1px 6px;
   margin-top: 12px;
   margin-right: 12px;
@@ -493,6 +510,7 @@ movie-preview .btn-close {
 movie-crews {
   background-color: #212529;
   display: block;
+  padding-top: 18px;
 
 }
 
@@ -536,7 +554,10 @@ crew-item .actor-pictures img {
 
 .real-name-actor {
   font-weight: 500;
+  cursor: pointer;
 }
+
+
 
 .real-name-actor, .character-name{
   max-width: 180px;
@@ -548,6 +569,103 @@ crew-item .actor-pictures img {
 
 /* end of crew-item element */
 
+
+
+
+
+
+/* related movies */
+related-movie {
+  padding-top: 18px;
+  background-color: #212529;
+  display: block;
+}
+
+.related-movies {
+  padding: 0 24px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-rows: minmax(min-content, max-content);
+  gap: 8px;
+  
+}
+/* end of related movies */
+
+
+
+
+
+
+
+
+
+
+/* modal crew details */
+.modal-body {
+  background-color: #2E2B2B;
+  display: flex;
+  flex-direction: column;
+}
+
+#actor_image-modal {
+  max-width: 20%;
+  margin: 10px auto;
+  border-radius: 5px;
+}
+
+.actor_details-modals {
+  color: white;
+  text-align: center;
+  margin-top: 8px;
+}
+
+#popularity_actor-modal {
+  font-weight: 700;
+  font-size: 18px;
+  width: 70px;
+  height: 70px;
+  line-height: 60px;
+  border-radius: 50%;
+  border: solid 3px white;
+  background-color: white;
+  color: #2E2B2B;
+  text-align: center;
+  margin: 12px auto;
+}
+
+#popularity_actor-modal p{
+  font-size: 1px;
+}
+
+.recent-movie_container {
+  margin-top: 12px;
+}
+
+#recent-movies_modal {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: minmax(min-content, max-content);
+  gap: 14px;
+  padding: 8px 24px;
+
+}
+
+
+.drop-down-movie {
+  font-size: 32px;
+  text-align: center;
+  margin: 8px 0px;
+  cursor: pointer;
+  padding-bottom: 12px;
+}
+
+.drop-down-movie i:hover {
+  color: red;
+}
+
+
+/* end of modal crew details */
 
 
 

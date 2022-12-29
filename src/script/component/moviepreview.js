@@ -1,8 +1,12 @@
 const moment = require("moment/moment");
+const { default: DataExtends } = require("../data/getdetailmovies");
 
 class MoviePreview extends HTMLElement {
   set preview(preview) {
     this._preview = preview[0];
+    this._backgroundImg =this._preview.backdrop_path? `https://image.tmdb.org/t/p/original${this._preview.backdrop_path}`: `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png`;
+
+
     this._detailMovie = preview[1];
     this._keyYotube = preview[2];
     this._actorsPreview = preview[3];
@@ -20,13 +24,16 @@ class MoviePreview extends HTMLElement {
         moment.duration(this._detailMovie.runtime, 'minutes').asMilliseconds()
       ).format('m [mins]');
     }
+
+    this._firstLanguage = this._detailMovie.spoken_languages[0]? this._detailMovie.spoken_languages[0].english_name: 'unavailable';
+
     this.render();
   }
 
 
   render () {
     this.innerHTML = `
-      <div class="movie-details" style="background-image: url(https://image.tmdb.org/t/p/original${this._preview.backdrop_path})">
+      <div class="movie-details" style="background-image: url(${this._backgroundImg})">
         <button type="button" class="btn-close btn-close-dark" aria-label="Close"></button>
         <div class="details-wrapper">
           <ul>
@@ -65,19 +72,20 @@ class MoviePreview extends HTMLElement {
             </li>
             <li>
               <div class="release-duration-preview">
-                <div class="released-preview">
+                <div id="language-preview">
+                  ${this._firstLanguage}
+                </div>
+                <div id="released-preview">
                   Released in ${this._releaseDate}
                 </div>
-                <div class="duration-preview">
+                <div id="duration-preview">
                   ${this._duration}
                 </div>
               </div>
             </li>           
           </ul>
         </div>
-      </div>
-
-     
+      </div>     
       `;
 
       const percent = ( this._preview.vote_average / 10) * 100;
@@ -87,16 +95,27 @@ class MoviePreview extends HTMLElement {
       const listCrews = document.querySelector('movie-crews');
       listCrews.crews = this._actorsPreview;
 
+      const relatedMoviesPart = document.querySelector('related-movie');     
+
+      DataExtends.getRelatedMovies(this._preview.id)
+      .then(results => {
+        const relatedMovies = results[0].data.results;
+
+        relatedMoviesPart.related = relatedMovies;      
+      });
+
       const closeButton = document.querySelector('.btn-close');
       closeButton.addEventListener('click', ()=> {
         this.innerHTML = ``;
         const sectionContainer = document.querySelector('.section-container');
+
         
         setTimeout(() => {
           sectionContainer.scrollIntoView();          
         }, 100);
-      })
-  }
+      });
+
+    }
 
 }
 

@@ -10,10 +10,9 @@ class TopMovieList extends HTMLElement {
 
   render() {
     this.innerHTML = ``;
-    const filteredMovie = this._topmovies.filter(movie => movie.backdrop_path && movie.poster_path);
-    filteredMovie.forEach(topmovie => {
+    this._topmovies.forEach(topmovie => {
       const topItemElement = document.createElement('movie-item');
-      topItemElement.movie = topmovie;
+
 
       DataExtends.getMovieDetail(topmovie.id)
       .then(results => {
@@ -21,7 +20,7 @@ class TopMovieList extends HTMLElement {
         const videoKeys = results[1].data.results[0] === undefined?' ': results[1].data.results[0].key;
         const listActors = results[2].data.cast;
 
-        topItemElement.detailMovie = [movieDetails, videoKeys, listActors];
+        topItemElement.detailMovie = [movieDetails, videoKeys, listActors, topmovie];
       });    
       
       this.appendChild(topItemElement);

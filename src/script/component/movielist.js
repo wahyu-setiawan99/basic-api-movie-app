@@ -8,26 +8,14 @@ class MovieList extends HTMLElement {
     this.render();
   }
 
-  set genres(genres) {
-    this._genres = genres;
-    this.render();
-  }
-
   renderError(message) {
     
   }
 
-  
-
-
   render() {
     this.innerHTML = ``;
-    const filteredMovie = this._movies.filter(movie => movie.backdrop_path && movie.poster_path);
-    filteredMovie.forEach(movie => {
+    this._movies.forEach(movie => {
       const movieItemElement = document.createElement('movie-item');
-
-      //masih bisa dipersingkat, sama dengan toplistmovies
-      movieItemElement.movie = movie;
 
       DataExtends.getMovieDetail(movie.id)
       .then(results => {
@@ -35,8 +23,7 @@ class MovieList extends HTMLElement {
         const videoKeys = results[1].data.results[0] === undefined?' ': results[1].data.results[0].key;
         const listActors = results[2].data.cast;
 
-
-        movieItemElement.detailMovie = [movieDetails, videoKeys, listActors];
+        movieItemElement.detailMovie = [movieDetails, videoKeys, listActors, movie];
       });
       
       this.appendChild(movieItemElement);

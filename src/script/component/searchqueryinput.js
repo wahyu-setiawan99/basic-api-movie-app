@@ -18,12 +18,17 @@ class QueryInput extends HTMLElement {
     
     <div class="movie-search-query">
       <input id="searchbyquery" type="text" placeholder="Search movie ...">
-      <button id="searchquery-button" type="submit">Search</button>
+      <button id="deletequery-button"><i class="fa-solid fa-xmark"></i></button>
+      <button id="searchquery-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
     `;
 
 
     this.querySelector('#searchquery-button').addEventListener('click', this._search);
+
+    this.querySelector('#deletequery-button').addEventListener('click', ()=> {
+      this.querySelector('#searchbyquery').value = '';
+    })
 
   }
 

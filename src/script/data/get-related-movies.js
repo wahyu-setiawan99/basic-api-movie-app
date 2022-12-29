@@ -1,3 +1,6 @@
+//not used nowwww!!!
+
+
 import axios from 'axios';
 
 class DataExtends {
@@ -12,14 +15,16 @@ class DataExtends {
   
       const getCredits = axios.get(`${baseUrl}/movie/${movie_id}/credits?api_key=${api_key}`);
 
+
+      const getSimilarMovie = axios.get(`${baseUrl}/movie/${movie_id}/similar?api_key=${api_key}`)
   
-      axios.all([movieDetail, getMovieVideos, getCredits]).
+      axios.all([movieDetail, getMovieVideos, getCredits, getSimilarMovie]).
       then(
         axios.spread((...responseJson) => {
           const responseMovieDetails = responseJson[0];
           const responseGetMovieVideos = responseJson[1];
           const responseGetCredits = responseJson[2];
-         
+          const responseSimilarMovies = responseJson[3];
           
   
           if (responseGetMovieVideos||responseMovieDetails){
@@ -27,33 +32,6 @@ class DataExtends {
               responseMovieDetails,
               responseGetMovieVideos,
               responseGetCredits,
-            ]);
-          } else {
-            reject(e => {
-              console.log(e);
-            })
-          } 
-        })
-      )
-    })
-  }
-
-
-  static getRelatedMovies (movie_id) {
-    return new Promise ((resolve, reject) => {
-      const baseUrl = `https://api.themoviedb.org/3`;
-      const api_key = `2549c839db5e074878d2577ca548bc87`;
-
-      const getSimilarMovie = axios.get(`${baseUrl}/movie/${movie_id}/similar?api_key=${api_key}`)
-  
-      axios.all([getSimilarMovie]).
-      then(
-        axios.spread((...responseJson) => {
-          const responseSimilarMovies = responseJson[0];
-          
-  
-          if (responseSimilarMovies){
-            resolve([
               responseSimilarMovies
             ]);
           } else {
@@ -64,8 +42,11 @@ class DataExtends {
         })
       )
     })
-
   }
+
+
+
+
 
 }
 

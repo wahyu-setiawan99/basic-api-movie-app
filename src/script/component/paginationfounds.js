@@ -28,7 +28,7 @@ class PageFounds extends HTMLElement {
     const displayInputPage = document.querySelector('#display_input-page');
     const currentPage = document.querySelector('#current_page-founds');
 
-    let count = 1;
+    let count = 1;    
 
     firstPageBtn.addEventListener('click', ()=> {
       count = 1;
@@ -78,6 +78,13 @@ class PageFounds extends HTMLElement {
           sectionContainer.scrollIntoView();          
         }, 100);
     });
+
+    
+
+
+
+
+
   }
 }
 
