@@ -1,34 +1,34 @@
-class PageFounds extends HTMLElement {
+class PaginationFav extends HTMLElement {
   connectedCallback (){
     this.render();
   }
   
   get value () {
-    return document.querySelector('#display_input-page').value;
+    return document.querySelector('#display_input-favorite').value;
   }
 
   render(){
     this.innerHTML = `
-    <div class="display-current_page-movies">Current page: <span id="current_page-founds">1</span></div>
+    <div class="display-current_page-movies">Current page: <span id="current_page-favorite">1</span></div>
     <div class="movie-pagination">
-      <button id="first_page-button-founds">1st page</button>
-      <button id="previous-button-founds">&laquo;</button>
+      <button id="first_page-button-favorite">1st page</button>
+      <button id="previous-button-favorite">&laquo;</button>
 
-      <input value="1" type="number" id="display_input-page" min="1"></input>
-
-      <button id="next-button-founds">&raquo;</button>
-      <button id="gotopage-founds" type="submit">Go!</button>
+      <input value="1" type="number" id="display_input-favorite" min="1"></input>
+      
+      <button id="next-button-favorite">&raquo;</button>
+      <button id="gotopage-favorite" type="submit">Go!</button>
     </div>
     `;
 
 
     const sectionContainer = document.querySelector('.section-container');
-    const firstPageBtn = document.querySelector('#first_page-button-founds');
-    const prevPageBtn = document.querySelector('#previous-button-founds');
-    const nextPageBtn = document.querySelector('#next-button-founds');
-    const gotopageFound = document.querySelector('#gotopage-founds')
-    const displayInputPage = document.querySelector('#display_input-page');
-    const currentPage = document.querySelector('#current_page-founds');
+    const firstPageBtn = document.querySelector('#first_page-button-favorite');
+    const prevPageBtn = document.querySelector('#previous-button-favorite');
+    const nextPageBtn = document.querySelector('#next-button-favorite');
+    const gotopageFound = document.querySelector('#gotopage-favorite')
+    const displayInputPage = document.querySelector('#display_input-favorite');
+    const currentPage = document.querySelector('#current_page-favorite');
 
     let count = 1;    
 
@@ -93,4 +93,4 @@ class PageFounds extends HTMLElement {
   }
 }
 
-customElements.define('pagination-founds', PageFounds);
+customElements.define('favorite-pagination', PaginationFav);

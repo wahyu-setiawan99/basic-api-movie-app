@@ -10,9 +10,9 @@ class Pagination extends HTMLElement {
 
   render() {
     this.innerHTML = `
-    <div id="display-current_page-movies">Current page: <span id="current_page-movies">1</span></div>
+    <div class="display-current_page-movies">Current page: <span id="current_page-movies">1</span></div>
     <div class="movie-pagination">
-      <button id="first_page-button-movies">&laquo;&laquo;</button>
+      <button id="first_page-button-movies">1st page</button>
       <button id="previous-button-movies">&laquo;</button>
       <input id="display_input-movies" type="number" value="1" min="1">
       <button id="next-button-movies">&raquo;</button>

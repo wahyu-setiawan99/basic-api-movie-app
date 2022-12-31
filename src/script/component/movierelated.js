@@ -47,7 +47,7 @@ class RelatedMovie extends HTMLElement {
           const getMovieGenres = () => {
             return relatedMoviesChunck[chunkNo].map(movie => {
               return {
-                ...movie, genre_ids: movie.genre_ids.map(number => results[2].find(genreCode => genreCode.id === number).name)
+                ...movie, genre_ids: movie.genre_ids.map(number => results[0].find(genreCode => genreCode.id === number).name)
               }
             })
           }
@@ -65,14 +65,10 @@ class RelatedMovie extends HTMLElement {
     
                 movieItemElement.detailMovie = [movieDetails,videoKeys, listActors, completeMovies[i]];
 
-          
-
                 relatedMoviesWrapper.appendChild(movieItemElement);
     
               });
-   
           }  
-
       }): null;
     }
 

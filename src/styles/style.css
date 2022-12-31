@@ -135,7 +135,7 @@ movie-slider {
   max-width: 95%;
 }
 
-movie-list, top-list, found-list {
+movie-list, movie-discover, top-list, found-list {
   min-height: 100vh;
   border-top: 8px wheat solid;
   margin: 0 auto;
@@ -261,7 +261,6 @@ query-input p {
 }
 
 #searchbyquery {
-  
   background-color: transparent;
   border: 1px white solid;
   border-radius: 12px;
@@ -272,7 +271,6 @@ query-input p {
 }
 
 #searchquery-button {
-  
   background-color: black;
   font-weight: 500;
   padding: 12px;
@@ -302,34 +300,103 @@ query-input p {
 
 
 
+/* sort by dropdown */
+sort-by{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+#sort-discover_movie {
+  display: flex;
+  flex-direction: row;
+  margin: 8px 0;
+}
+
+#sort-discover_movie select {
+  margin-right: 18px;
+}
+
+.select-sort{
+  margin: 0 8px;
+  margin-bottom: 6px;
+  padding: 0 6px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#sort-discover_movie option {
+  background-color: #2E2B2B;
+}
+
+#language-search_wrapper{
+  position: relative;
+}
+
+#lang_search-discovery {
+  position: absolute;
+  right: 5%;
+  top: 20%;
+  font-size: 18px;
+}
+
+#lang_search-discovery:hover {
+  color: red;
+}
+
+#select-country_input {
+  border: 1px white solid;
+  background-color: transparent;
+}
+
+#reset-button__wrapper {
+  justify-content: flex-end;
+}
+
+#reset_button-discover{
+  padding: 0px 6px;
+  background-color: black;
+  border: 1px white solid;
+  cursor: pointer;
+}
+
+#reset_button-discover:hover {
+  background-color: red;
+}
+
+
+/* end of sort by dropdown */
+
 
 
 
 
 /* pagination movies */
-pagination-founds, movie-pagination {
+pagination-founds, movie-pagination, favorite-pagination {
   padding: 24px;
   display: flex;
   flex-direction: column;
 }
 
-#display-current_page-founds, #display-current_page-movies  {
+.display-current_page-movies  {
   padding-left: 12px;
   padding-bottom: 24px;
   font-size: 20px;
 }
 
-#current_page-founds, #current_page-movies {
+#current_page-founds, #current_page-movies, #current_page-favorite {
   font-weight: 600;
 
 }
 
-.founds-pagination, .movie-pagination {
+.movie-pagination {
   display: flex;
   flex-direction: row;
 }
 
-.founds-pagination button, .movie-pagination button {
+.movie-pagination button {
   color: white;
   background-color: black;
   padding: 4px 12px;
@@ -338,13 +405,13 @@ pagination-founds, movie-pagination {
   font-size: 20px;
 }
 
-.founds-pagination button:hover, .movie-pagination button:hover {
+.movie-pagination button:hover {
   background-color: red;
   border: 2px red solid;
   
 }
 
-#display_input-page, #display_input-movies  {
+#display_input-page, #display_input-movies, #display_input-favorite  {
   padding: 8px;
   border: 1px white solid;
   text-align: center;
@@ -366,7 +433,7 @@ movie-preview {
   display: block;
   width: 100%;
   padding: 16px 24px;
-  background-color: black;
+  background-color: #212529;
   position: relative;
 }
 
@@ -557,7 +624,9 @@ crew-item .actor-pictures img {
   cursor: pointer;
 }
 
-
+.real-name-actor:hover {
+  color: red;
+}
 
 .real-name-actor, .character-name{
   max-width: 180px;
@@ -682,7 +751,7 @@ related-movie {
 
 .footer-section {
   background-color: rgb(57, 45, 45);
-  padding: 24px;
+  padding: 42px 8px;
   text-align: center;
   font-weight: 600;
 }

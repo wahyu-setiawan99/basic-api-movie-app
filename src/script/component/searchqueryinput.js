@@ -24,7 +24,10 @@ class QueryInput extends HTMLElement {
     `;
 
 
-    this.querySelector('#searchquery-button').addEventListener('click', this._search);
+    this.querySelector('#searchquery-button').addEventListener('click', ()=> {
+      document.querySelector('#first_page-button-founds').click();
+
+    });
 
     this.querySelector('#deletequery-button').addEventListener('click', ()=> {
       this.querySelector('#searchbyquery').value = '';

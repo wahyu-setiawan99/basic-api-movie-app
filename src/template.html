@@ -34,7 +34,7 @@
 
       <ul class="nav nav-pills mb-1 ms-5 me-5" id="movieTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link fs-5 fw-semibold active" id="popular-tab" data-bs-toggle="tab" data-bs-target="#popular-tab-pane" type="button" role="tab" aria-controls="popular-tab-pane" aria-selected="true">Popular Movie</button>
+          <button class="nav-link fs-5 fw-semibold active" id="discover-tab" data-bs-toggle="tab" data-bs-target="#discover-tab-pane" type="button" role="tab" aria-controls="discover-tab-pane" aria-selected="true">Discover Movie</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link fs-5 fw-semibold" id="favorite-tab" data-bs-toggle="tab" data-bs-target="#favorite-tab-pane" type="button" role="tab" aria-controls="favorite-tab-pane" aria-selected="false">Favorite Movie</button>
@@ -45,23 +45,25 @@
       </ul>
 
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="popular-tab-pane" role="tabpanel" aria-labelledby="popular-tab" tabindex="0">
+        <div class="tab-pane fade show active" id="discover-tab-pane" role="tabpanel" aria-labelledby="discover-tab" tabindex="0">
 
-          <!-- popular movies -->
-          <section class="movie-section" id="popular-movies">
-            <movie-list></movie-list>
-            <movie-pagination></movie-pagination>          
-          </section> 
-          <!-- end of popular movies  -->
+          <!-- discover movies -->
+          <section class="movie-section" id="discover-movies">
+            <sort-by></sort-by>        
+            <movie-discover></movie-discover>
+            <movie-pagination></movie-pagination>   
+          </section>
+          <!-- end of discover movies  -->
         </div>
   
         <div class="tab-pane fade" id="favorite-tab-pane" role="tabpanel" aria-labelledby="favorite-tab" tabindex="0">
 
-          <!-- Top List movies -->
+          <!-- Favorite movies -->
           <section class="movie-section" id="top-movies">
             <top-list></top-list>
+            <favorite-pagination></favorite-pagination>
           </section> 
-          <!-- end of Top List movies  -->
+          <!-- end of Favorite movies  -->
 
         </div>
 
@@ -113,7 +115,5 @@
     </div>
   </footer>
   <!-- end of footer -->
-
-
 </body>
 </html>

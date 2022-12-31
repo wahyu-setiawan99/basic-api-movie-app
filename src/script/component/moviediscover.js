@@ -1,20 +1,15 @@
 import DataExtends from '../data/getdetailmovies';
 import './movieitem';
 
-
-class MovieList extends HTMLElement {
-  set movies(movies) {
-    this._movies = movies;
+class MovieDiscover extends HTMLElement {
+  set discover (discover) {
+    this._discover = discover;
     this.render();
   }
 
-  renderError(message) {
-    
-  }
-
-  render() {
-    this.innerHTML = ``;
-    this._movies.forEach(movie => {
+  render(){
+    this.innerHTML=``;
+    this._discover.forEach(movie => {
       const movieItemElement = document.createElement('movie-item');
 
       DataExtends.getMovieDetail(movie.id)
@@ -28,7 +23,8 @@ class MovieList extends HTMLElement {
       
       this.appendChild(movieItemElement);
     });
+
   }
 }
 
-customElements.define('movie-list', MovieList);
+customElements.define('movie-discover', MovieDiscover);
