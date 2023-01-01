@@ -27,6 +27,10 @@ h4 {
   font-size: 14px;
 }
 
+h5 {
+  font-size: 12px;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -263,9 +267,9 @@ query-input p {
 #searchbyquery {
   background-color: transparent;
   border: 1px white solid;
-  border-radius: 12px;
+  border-radius: 18px;
   color: white;
-  padding: 4px 8px;
+  padding: 4px 12px;
   margin: 0 8px;
   width: 40%;
 }
@@ -349,6 +353,7 @@ sort-by{
 #select-country_input {
   border: 1px white solid;
   background-color: transparent;
+  padding: 0 6px;
 }
 
 #reset-button__wrapper {
@@ -432,8 +437,8 @@ pagination-founds, movie-pagination, favorite-pagination {
 movie-preview {
   display: block;
   width: 100%;
-  padding: 16px 24px;
-  background-color: #212529;
+  padding: 16px 0px;
+  background-color: #2E2B2B;
   position: relative;
 }
 
@@ -575,7 +580,7 @@ movie-preview .btn-close {
 
 /* crews-preview */
 movie-crews {
-  background-color: #212529;
+  background-color: #2E2B2B;
   display: block;
   padding-top: 18px;
 
@@ -645,8 +650,8 @@ crew-item .actor-pictures img {
 
 /* related movies */
 related-movie {
-  padding-top: 18px;
-  background-color: #212529;
+  padding: 18px 0;
+  background-color: #2E2B2B;
   display: block;
 }
 
@@ -744,16 +749,20 @@ related-movie {
 
 
 /* footer */
-/* .line-separator {
+.line-separator {
   background-color: wheat;
-  padding: 6px;
-} */
+  padding: 12px;
+}
 
 .footer-section {
-  background-color: rgb(57, 45, 45);
-  padding: 42px 8px;
+  background-color: #212529;
+  padding: 36px 8px;
   text-align: center;
-  font-weight: 600;
+ 
+}
+
+#copyright-site {
+  font-weight: 500;
 }
 
 /* end of footer */

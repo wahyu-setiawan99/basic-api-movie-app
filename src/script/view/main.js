@@ -47,7 +47,7 @@ const main = () => {
           sortByDiscover.countryCode
           )
           .then(renderDiscover)
-          .catch(error => console.log(error))
+          .catch(errorDiscover)
       })
   }
 
@@ -167,6 +167,10 @@ const main = () => {
     };
     const discoverMovies = discoverMovie();
     movieDiscover.discover = discoverMovies;
+  }
+
+  const errorDiscover = message => {
+    movieDiscover.renderError(message);
   }
 
 

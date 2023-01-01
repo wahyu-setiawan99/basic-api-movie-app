@@ -7,6 +7,12 @@ class MovieDiscover extends HTMLElement {
     this.render();
   }
 
+
+  renderError (message) {
+    this.innerHTML = ``;
+    this.innerHTML += `<h3>${message}</h3>`;
+  }
+
   render(){
     this.innerHTML=``;
     this._discover.forEach(movie => {

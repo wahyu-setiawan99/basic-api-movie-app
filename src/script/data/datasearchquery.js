@@ -6,7 +6,8 @@ class DataSearch {
     const api_key = `2549c839db5e074878d2577ca548bc87`;
 
     return new Promise ((resolve, reject) => {
-      const moviebyQuery = axios.get(`${baseUrl}/search/movie?api_key=${api_key}&language=en-US&query=${query}&page=${page}`)
+      const moviebyQuery = axios.get(`${baseUrl}/search/movie?api_key=${api_key}&language=en-US&query=${query}&page=${page}`);
+      
       const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${api_key}`);
 
 
@@ -19,7 +20,7 @@ class DataSearch {
           if (responseMoviebyQuery[0]) {
             resolve([responseMoviebyQuery, responseGenre]);
           } else {
-            reject(`no results found!`);
+            reject(`no movie found!`);
           }
         })
       )

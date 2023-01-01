@@ -16,6 +16,7 @@ import './script/component/movielistfound';
 import './script/component/searchqueryinput';
 import './script/component/sortbymovie';
 import './script/component/crewmodals';
+import './script/component/footersite';
 
 
 

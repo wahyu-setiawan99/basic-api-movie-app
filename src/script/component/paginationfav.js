@@ -14,7 +14,7 @@ class PaginationFav extends HTMLElement {
       <button id="first_page-button-favorite">1st page</button>
       <button id="previous-button-favorite">&laquo;</button>
 
-      <input value="1" type="number" id="display_input-favorite" min="1"></input>
+      <input value="1" type="number" id="display_input-favorite" min="1" max="500"></input>
       
       <button id="next-button-favorite">&raquo;</button>
       <button id="gotopage-favorite" type="submit">Go!</button>
@@ -54,12 +54,13 @@ class PaginationFav extends HTMLElement {
     });
 
 
-
-
-
     nextPageBtn.addEventListener('click', ()=> {
-      count = parseInt(count) + 1;
-
+      if (count < 500) {
+        count = parseInt(count) + 1;
+      } else {
+        count = parseInt(count);
+      }
+      
       displayInputPage.value = count;
       currentPage.innerText = count;
       this.clickEvent();
@@ -77,6 +78,8 @@ class PaginationFav extends HTMLElement {
     gotopageFound.addEventListener('click', ()=> {
       if (displayInputPage.value < 1) {
         count = 1;
+      } else if (displayInputPage.value > 500){
+        count = 500;
       } else {
         count = displayInputPage.value;
       }

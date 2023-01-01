@@ -5,7 +5,7 @@ class DataSource {
     const baseUrl = 'https://api.themoviedb.org/3';
     const api_key = '2549c839db5e074878d2577ca548bc87';
 
-    return new Promise ((resolve) => {
+    return new Promise ((resolve, reject) => {
       const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${api_key}`);
 
       const requestCountry = axios.get(`${baseUrl}/configuration/languages?api_key=${api_key}`);
@@ -22,6 +22,7 @@ class DataSource {
             const responseGenre = responseJson[0].data.genres;
             const responseCountry = responseJson[1].data;
             const responseWeekTrend = responseJson[2].data.results;
+            
         resolve([
           responseGenre,
           responseCountry,
@@ -36,7 +37,7 @@ class DataSource {
     const baseUrl = 'https://api.themoviedb.org/3';
     const api_key = '2549c839db5e074878d2577ca548bc87';
 
-    return new Promise ((resolve) => {
+    return new Promise ((resolve, reject) => {
       const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${api_key}`);
 
       const requestDiscover = axios.get(`${baseUrl}/discover/movie?api_key=${api_key}&sort_by=${sort}&vote_average.gte=${minVote}&page=${page}&primary_release_year=${year}&with_genres=${genre}&with_original_language=${lang}`);
@@ -50,11 +51,15 @@ class DataSource {
             const responseGenre = responseJson[0].data.genres;
             const responseDiscover = responseJson[1].data.results;
 
-        resolve([
-          responseGenre,
-          responseDiscover
-      
-        ]);
+
+            if (responseDiscover[0]) {
+              resolve([
+                responseGenre,
+                responseDiscover
+              ]);
+            } else {
+              reject (`No movies!`)
+            }
       }))
     })    
   }

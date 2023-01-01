@@ -58,7 +58,11 @@ class PageFounds extends HTMLElement {
 
 
     nextPageBtn.addEventListener('click', ()=> {
-      count = parseInt(count) + 1;
+      if (count < 500) {
+        count = parseInt(count) + 1;
+      } else {
+        count = parseInt(count);
+      }
 
       displayInputPage.value = count;
       currentPage.innerText = count;
@@ -77,6 +81,8 @@ class PageFounds extends HTMLElement {
     gotopageFound.addEventListener('click', ()=> {
       if (displayInputPage.value < 1) {
         count = 1;
+      } else if (displayInputPage.value > 500){
+        count = 500;
       } else {
         count = displayInputPage.value;
       }
