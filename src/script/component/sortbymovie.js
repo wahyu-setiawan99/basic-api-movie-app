@@ -1,34 +1,30 @@
 class SortByMovie extends HTMLElement {
-  connectedCallback(){
+  connectedCallback() {
     this.render();
   }
 
-
-
-  get option () {
-    return document.querySelector('#sort-movie').value;
+  get option() {
+    return this.querySelector('#sort-movie').value;
   }
 
-  get yearMovie () {
-    return document.querySelector('#year-movie').value;
+  get yearMovie() {
+    return this.querySelector('#year-movie').value;
   }
 
-  get genreDiscovery () {
-    return document.querySelector('#genre-discover').value;
+  get genreDiscovery() {
+    return this.querySelector('#genre-discover').value;
   }
 
-  get minVoteDiscovery () {
-    return document.querySelector('#min_vote-discover').value;
+  get minVoteDiscovery() {
+    return this.querySelector('#min_vote-discover').value;
   }
 
-  get countryCode () {
-    return document.querySelector('#select-country_input').value;
+  get countryCode() {
+    return this.querySelector('#select-country_input').value;
   }
 
-
-
-  render(){
-    this.innerHTML=`
+  render() {
+    this.innerHTML = `
       <div id="sort-discover_movie">
         <label for="sort-movie">Sort by: </label>
         <select name="sort-movie" id="sort-movie" class="select-sort">
@@ -77,28 +73,27 @@ class SortByMovie extends HTMLElement {
       </div>
     `;
 
-    document.querySelector('#sort-movie').addEventListener('change', ()=> {
-      document.querySelector('#first_page-button-movies').click();        
-    });
-
-    document.querySelector('#year-movie').addEventListener('change', ()=> {
+    document.querySelector('#sort-movie').addEventListener('change', () => {
       document.querySelector('#first_page-button-movies').click();
     });
 
-    document.querySelector('#genre-discover').addEventListener('change', ()=> {
+    document.querySelector('#year-movie').addEventListener('change', () => {
       document.querySelector('#first_page-button-movies').click();
     });
 
-    document.querySelector('#min_vote-discover').addEventListener('change', ()=> {
+    document.querySelector('#genre-discover').addEventListener('change', () => {
       document.querySelector('#first_page-button-movies').click();
     });
 
-    document.querySelector('#lang_search-discovery').addEventListener('click', ()=> {      
+    document.querySelector('#min_vote-discover').addEventListener('change', () => {
       document.querySelector('#first_page-button-movies').click();
     });
 
+    document.querySelector('#lang_search-discovery').addEventListener('click', () => {
+      document.querySelector('#first_page-button-movies').click();
+    });
 
-    document.querySelector('#reset_button-discover').addEventListener('click', ()=> {
+    document.querySelector('#reset_button-discover').addEventListener('click', () => {
       document.querySelector('#sort-movie').value = 'popularity.desc';
       document.querySelector('#min_vote-discover').value = 0;
       document.querySelector('#genre-discover').value = undefined;
@@ -106,14 +101,7 @@ class SortByMovie extends HTMLElement {
       document.querySelector('#select-country_input').value = '';
       document.querySelector('#first_page-button-movies').click();
     });
-
-
-
-
-
-
   }
-
 }
 
 customElements.define('sort-by', SortByMovie);

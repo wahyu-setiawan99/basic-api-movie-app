@@ -1,5 +1,5 @@
 class SearchBar extends HTMLElement {
-  connectedCallback () {
+  connectedCallback() {
     this.render();
   }
 
@@ -8,7 +8,7 @@ class SearchBar extends HTMLElement {
     this.render();
   }
 
-  get value(){
+  get value() {
     return this.querySelector('#searchElement').value;
   }
 

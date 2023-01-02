@@ -1,9 +1,9 @@
 class FooterSite extends HTMLElement {
-  connectedCallback(){
+  connectedCallback() {
     this.render();
   }
 
-  render(){
+  render() {
     this.innerHTML = `
     <div class="line-separator"></div>
     <div class="footer-section">
@@ -11,9 +11,7 @@ class FooterSite extends HTMLElement {
       <p>This site is presented as project submission for Lintasarta Cloudeka Scholarship via Dicoding</p>
     </div>
     `;
-
   }
-
 }
 
 customElements.define('footer-site', FooterSite);

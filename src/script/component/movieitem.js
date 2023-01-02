@@ -1,22 +1,17 @@
-const moment = require("moment/moment");
+const moment = require('moment/moment');
 
 class MovieItem extends HTMLElement {
   set detailMovie(detailMovie) {
-    this._detailMovie = detailMovie[0];
-    this._videoKeys = detailMovie[1];
-    this._listActors = detailMovie[2];
-    this.runtime = this._detailMovie.runtime;
+    [this._detailMovie, this._videoKeys, this._listActors, this._movie] = detailMovie;
 
-    this._movie = detailMovie[3];
+    this._runtime = this._detailMovie.runtime;
     this._yearMovie = moment(this._movie.release_date).format('YYYY');
-    this._movieRating = this._movie.vote_average.toFixed(1); 
-    this._movieGenre = this._movie.genre_ids[0] ?this._movie.genre_ids[0].split(' ')[0]: 'Undefined';
-    this._posterPath = this._movie.poster_path? `https://image.tmdb.org/t/p/w300${this._movie.poster_path}`: `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png`;
-
+    this._movieRating = this._movie.vote_average.toFixed(1);
+    this._movieGenre = this._movie.genre_ids[0] ? this._movie.genre_ids[0].split(' ')[0] : 'Undefined';
+    this._posterPath = this._movie.poster_path ? `https://image.tmdb.org/t/p/w300${this._movie.poster_path}` : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
     this.render();
   }
-  
 
   render() {
     this.innerHTML = `
@@ -34,7 +29,7 @@ class MovieItem extends HTMLElement {
       </div>
       <div class="year_duration_type">
         <div id="year-duration" class="movie-item__year-dur-genre">
-          ${this._yearMovie} &#x2022 ${this.runtime}m
+          ${this._yearMovie} &#x2022 ${this._runtime}m
         </div>
         <div id="genre-movie" class="movie-item__year-dur-genre">
           ${this._movieGenre}
@@ -43,31 +38,25 @@ class MovieItem extends HTMLElement {
     </div>      
   `;
 
-  this.querySelector('.selected-movie').addEventListener('click', () => {
-    const moviePreviewSection = document.querySelector('movie-preview');
-    const modalHeaderBtn = document.querySelector('.modal-header button')
-    
-    moviePreviewSection.preview = [this._movie, this._detailMovie, this._videoKeys, this._listActors];
+    this.querySelector('.selected-movie').addEventListener('click', () => {
+      const moviePreviewSection = document.querySelector('movie-preview');
+      const modalHeaderBtn = document.querySelector('.modal-header button');
 
-    setTimeout(() => {
-      moviePreviewSection.scrollIntoView();
+      moviePreviewSection.preview = [this._movie,
+        this._detailMovie,
+        this._videoKeys,
+        this._listActors];
 
+      setTimeout(() => {
+        moviePreviewSection.scrollIntoView();
 
-      modalHeaderBtn? modalHeaderBtn.click(): null;
-    }, 200);
-
-    
-
-
-    
-
-
-
-  });
-
-
+        if (modalHeaderBtn) {
+          modalHeaderBtn.click();
+        }
+        return null;
+      }, 200);
+    });
   }
-
 }
 
 customElements.define('movie-item', MovieItem);

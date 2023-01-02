@@ -61,34 +61,20 @@ class AppBar extends HTMLElement {
     </nav>
   `;
 
+    this.querySelector('#most-popular-movies').addEventListener('click', () => {
+      document.querySelector('#discover-tab').click();
+      document.querySelector('#reset_button-discover').click();
+    });
 
-  this.querySelector('#most-popular-movies').addEventListener('click', () => {
-    document.querySelector('#discover-tab').click();
-    document.querySelector('#reset_button-discover').click();
-  });
+    this.querySelector('#most-favorite-movies').addEventListener('click', () => {
+      document.querySelector('#favorite-tab').click();
+      document.querySelector('#first_page-button-favorite').click();
+    });
 
-
-  this.querySelector('#most-favorite-movies').addEventListener('click', () => {
-    document.querySelector('#favorite-tab').click();
-    document.querySelector('#first_page-button-favorite').click();
-  });
-
-
-
-  this.querySelector('#search-more-movies').addEventListener('click', () => {
-    document.querySelector('#found-tab').click();
-    document.querySelector('#deletequery-button').click();
-  });
-
-
-
-
-
-
-
-
-
-
+    this.querySelector('#search-more-movies').addEventListener('click', () => {
+      document.querySelector('#found-tab').click();
+      document.querySelector('#deletequery-button').click();
+    });
   }
 }
 

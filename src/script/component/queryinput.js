@@ -8,13 +8,17 @@ class QueryInput extends HTMLElement {
     this.render();
   }
 
-  get value () {
-    return this.querySelector('#searchbyquery').value;
+  get value() {
+    const keyword = this.querySelector('#searchbyquery').value;
+
+    if (keyword.length > 0) {
+      return keyword;
+    }
+    return 'keyword-meant-not-t-be-found-12345';
   }
 
-
   render() {
-    this.innerHTML=`
+    this.innerHTML = `
     
     <div class="movie-search-query">
       <input id="searchbyquery" type="text" placeholder="Search movie ...">
@@ -23,18 +27,14 @@ class QueryInput extends HTMLElement {
     </div>
     `;
 
-
-    this.querySelector('#searchquery-button').addEventListener('click', ()=> {
+    this.querySelector('#searchquery-button').addEventListener('click', () => {
       document.querySelector('#first_page-button-founds').click();
-
     });
 
-    this.querySelector('#deletequery-button').addEventListener('click', ()=> {
+    this.querySelector('#deletequery-button').addEventListener('click', () => {
       this.querySelector('#searchbyquery').value = '';
-    })
-
+    });
   }
-
 }
 
 customElements.define('query-input', QueryInput);

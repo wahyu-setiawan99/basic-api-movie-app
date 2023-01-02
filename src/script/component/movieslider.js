@@ -1,17 +1,13 @@
-import DataExtends from '../data/getdetailmovies';
+import DataExtends from '../data/data-extensions';
 import './slideritem';
 
 class MovieSlider extends HTMLElement {
-  set sliders(sliders){
+  set sliders(sliders) {
     this._sliders = sliders;
     this.render();
   }
 
-
-
-
-  
-  render(){
+  render() {
     this.innerHTML = `
     <div id="movieSliderCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -39,40 +35,32 @@ class MovieSlider extends HTMLElement {
     `;
 
     const carouselInner = document.querySelector('.carousel-inner');
-    for (let j = 1; j<10; j++) {
+    for (let j = 1; j < 10; j += 1) {
       const sliderItem = document.createElement('slider-item');
       sliderItem.slider = this._sliders[j];
 
       carouselInner.appendChild(sliderItem);
     }
 
-    
-
     const clickedTitle = document.querySelectorAll('.carousel-caption h3');
     const previewMovie = document.querySelector('movie-preview');
 
-    for (let i=0; i<10 ; i++) {
-      clickedTitle[i].addEventListener('click', ()=> {
-        
+    for (let i = 0; i < 10; i += 1) {
+      clickedTitle[i].addEventListener('click', () => {
         DataExtends.getMovieDetail(this._sliders[i].id)
-        .then(results => {
-          const movieDetails =  results[0].data;
-          const videoKeys = results[1].data.results[0] === undefined?' ': results[1].data.results[0].key;
-          const listActors = results[2].data.cast;
+          .then((results) => {
+            const movieDetails = results[0];
+            const videoKeys = results[1] === undefined ? ' ' : results[1].key;
+            const listActors = results[2];
 
-
-          previewMovie.preview = [this._sliders[i], movieDetails, videoKeys, listActors];
-
-        })
+            previewMovie.preview = [this._sliders[i], movieDetails, videoKeys, listActors];
+          });
 
         setTimeout(() => {
           previewMovie.scrollIntoView();
         }, 400);
-      })
-
+      });
     }
-
-
   }
 }
 

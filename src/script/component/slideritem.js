@@ -1,5 +1,5 @@
 class SliderItem extends HTMLElement {
-  set slider (slider) {
+  set slider(slider) {
     this._slider = slider;
     this.render();
   }
@@ -15,7 +15,6 @@ class SliderItem extends HTMLElement {
     </div>
     `;
   }
-
 }
 
 customElements.define('slider-item', SliderItem);

@@ -139,7 +139,7 @@ movie-slider {
   max-width: 95%;
 }
 
-movie-list, movie-discover, top-list, found-list {
+discover-list, favorite-list, found-list {
   min-height: 100vh;
   border-top: 8px wheat solid;
   margin: 0 auto;
@@ -147,9 +147,16 @@ movie-list, movie-discover, top-list, found-list {
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
   grid-template-rows: minmax(min-content, max-content);
-  gap: 8px;  
-  
+  gap: 8px;
+  position: relative;
 }
+
+.no-found__notice {
+  position: absolute;
+  top: 5%;
+}
+
+
 
 /* end of movie list */
 
@@ -379,7 +386,7 @@ sort-by{
 
 
 /* pagination movies */
-pagination-founds, movie-pagination, favorite-pagination {
+pagination-discover, favorite-pagination, pagination-founds {
   padding: 24px;
   display: flex;
   flex-direction: column;

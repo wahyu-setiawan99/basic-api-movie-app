@@ -1,118 +1,126 @@
 import axios from 'axios';
 
 class DataSource {
-  static searchMovie() {
+  static getBasicData() {
     const baseUrl = 'https://api.themoviedb.org/3';
-    const api_key = '2549c839db5e074878d2577ca548bc87';
+    const apiKey = '2549c839db5e074878d2577ca548bc87';
 
-    return new Promise ((resolve, reject) => {
-      const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${api_key}`);
+    return new Promise((resolve, reject) => {
+      const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${apiKey}`);
+      const requestCountry = axios.get(`${baseUrl}/configuration/languages?api_key=${apiKey}`);
+      const requestWeeklyTrend = axios.get(`${baseUrl}/trending/movie/day?api_key=${apiKey}`);
 
-      const requestCountry = axios.get(`${baseUrl}/configuration/languages?api_key=${api_key}`);
-
-      const requestWeeklyTrend = axios.get(`${baseUrl}/trending/movie/day?api_key=${api_key}`);
-      
       axios.all([
         requestGenre,
         requestCountry,
-        requestWeeklyTrend,      
-      ]).
-        then(
+        requestWeeklyTrend,
+      ])
+        .then(
           axios.spread((...responseJson) => {
             const responseGenre = responseJson[0].data.genres;
             const responseCountry = responseJson[1].data;
             const responseWeekTrend = responseJson[2].data.results;
-            
-        resolve([
-          responseGenre,
-          responseCountry,
-          responseWeekTrend,
-        ]);
-      }))
-    })
+
+            if (responseWeekTrend) {
+              resolve([
+                responseGenre,
+                responseCountry,
+                responseWeekTrend,
+              ]);
+            } else {
+              reject(new Error('no weekly trending movies found'));
+            }
+          }),
+        );
+    });
   }
 
-
-  static discoveryMovie(page, sort, year, genre, minVote, lang='') {
+  static discoveryMovie(page, sort, year, genre, minVote, lang = '') {
     const baseUrl = 'https://api.themoviedb.org/3';
-    const api_key = '2549c839db5e074878d2577ca548bc87';
+    const apiKey = '2549c839db5e074878d2577ca548bc87';
 
-    return new Promise ((resolve, reject) => {
-      const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${api_key}`);
+    return new Promise((resolve, reject) => {
+      const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${apiKey}`);
+      const requestDiscover = axios.get(`${baseUrl}/discover/movie?api_key=${apiKey}&sort_by=${sort}&vote_average.gte=${minVote}&page=${page}&primary_release_year=${year}&with_genres=${genre}&with_original_language=${lang}`);
 
-      const requestDiscover = axios.get(`${baseUrl}/discover/movie?api_key=${api_key}&sort_by=${sort}&vote_average.gte=${minVote}&page=${page}&primary_release_year=${year}&with_genres=${genre}&with_original_language=${lang}`);
-  
       axios.all([
         requestGenre,
-        requestDiscover
-      ]).
-        then(
+        requestDiscover,
+      ])
+        .then(
           axios.spread((...responseJson) => {
             const responseGenre = responseJson[0].data.genres;
             const responseDiscover = responseJson[1].data.results;
 
-
             if (responseDiscover[0]) {
               resolve([
                 responseGenre,
-                responseDiscover
+                responseDiscover,
               ]);
             } else {
-              reject (`No movies!`)
+              // eslint-disable-next-line prefer-promise-reject-errors
+              reject('No movies filtered!');
             }
-      }))
-    })    
+          }),
+        );
+    });
   }
-
 
   static favoriteMovie(page) {
     const baseUrl = 'https://api.themoviedb.org/3';
-    const api_key = '2549c839db5e074878d2577ca548bc87';
+    const apiKey = '2549c839db5e074878d2577ca548bc87';
 
-    return new Promise ((resolve) => {
-      const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${api_key}`);
-      
-      const requestFavorite = axios.get(`${baseUrl}/movie/top_rated?api_key=${api_key}&page=${page}`);
-      
+    return new Promise((resolve, reject) => {
+      const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${apiKey}`);
+      const requestFavorite = axios.get(`${baseUrl}/movie/top_rated?api_key=${apiKey}&page=${page}`);
+
       axios.all([
         requestGenre,
-        requestFavorite        
-      ]).
-        then(
+        requestFavorite,
+      ])
+        .then(
           axios.spread((...responseJson) => {
             const responseGenre = responseJson[0].data.genres;
-            const responseTopRated = responseJson[1].data.results;
-        resolve([
-          responseGenre,
-          responseTopRated
-        ]);
-      }))
-    })
-  }
+            const responseFavorite = responseJson[1].data.results;
 
+            if (responseFavorite[0]) {
+              resolve([
+                responseGenre,
+                responseFavorite,
+              ]);
+            } else {
+              reject(new Error('no favorite movies found'));
+            }
+          }),
+        );
+    });
+  }
 
   static getGenreList() {
     const baseUrl = 'https://api.themoviedb.org/3';
-    const api_key = '2549c839db5e074878d2577ca548bc87';
+    const apiKey = '2549c839db5e074878d2577ca548bc87';
 
-    return new Promise ((resolve) => {
-      const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${api_key}`);
-  
+    return new Promise((resolve, reject) => {
+      const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${apiKey}`);
+
       axios.all([
         requestGenre,
-      ]).
-        then(
+      ])
+        .then(
           axios.spread((...responseJson) => {
             const responseGenre = responseJson[0].data.genres;
 
-        resolve([
-          responseGenre,
-        
-        ]);
-      }))
-    })    
+            if (responseGenre) {
+              resolve([
+                responseGenre,
+              ]);
+            } else {
+              reject(new Error('no genres found'));
+            }
+          }),
+        );
+    });
   }
-
 }
 
 export default DataSource;
