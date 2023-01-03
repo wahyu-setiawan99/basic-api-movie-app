@@ -1,6 +1,11 @@
 const moment = require('moment/moment');
 
 class MovieItem extends HTMLElement {
+  constructor () {
+    super();
+    this.shadowDOM = this.attachShadow({ mode: 'open' });
+  }
+
   set detailMovie(detailMovie) {
     [this._detailMovie, this._videoKeys, this._listActors, this._movie] = detailMovie;
 
@@ -14,14 +19,99 @@ class MovieItem extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = `
+    
+    this.shadowDOM.innerHTML = `    
+    <style>
+    /* movie item */
+    :host {
+      margin-bottom: 14px;
+      margin-top: 4px;
+      cursor: pointer;
+      min-height: 320px;
+    }
+
+    .selected-movie {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      gap: 3px;
+    }
+
+    .selected-movie:hover {
+      filter: brightness(80%);
+    }
+
+    .selected-movie .hd-logo, .selected-movie .rating-star-item {
+      position: absolute;
+      padding: 0px 2px;
+      border-radius: 6px;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .selected-movie .hd-logo {
+      right: 6px;
+      top: 6px;
+      border: 2px white solid;
+    }
+
+    .selected-movie .rating-star-item {
+      left: 6px;
+      top: 6px;
+      background-color: black;
+    }
+
+    .selected-movie img {
+      width: 100%;
+      border-radius: 10px;
+      height: 280px;
+    }
+
+    .selected-movie .movie-item__movie-title {
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+      padding: 0 8px;  
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+    }
+
+    .selected-movie .movie-item__movie-title:hover {
+      color: red;
+    }
+
+    .selected-movie .year_duration_type {
+      font-size: 14px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0 3px;
+    }
+
+    .movie-item__year-dur-genre {
+      padding: 0px 4px;
+    }
+
+    #genre-movie {
+      border: 2px rgb(1, 94, 5) solid;
+      border-radius: 4px;
+      padding-bottom: 2px;
+      margin: auto 0;
+    }
+    /* end of movie item */
+    </style>
+
+
     <div class="selected-movie">
       <div class="hd-logo">
         HD
       </div>
       <div class="rating-star-item">        
-        ${this._movieRating}
-        <i class="fa-sharp fa-solid fa-star"></i>
+        &#9733;${this._movieRating}        
       </div>
       <img src=${this._posterPath} alt="Movie Cover">
       <div class="movie-item__movie-title">
@@ -38,7 +128,7 @@ class MovieItem extends HTMLElement {
     </div>      
   `;
 
-    this.querySelector('.selected-movie').addEventListener('click', () => {
+    this.shadowDOM.querySelector('.selected-movie').addEventListener('click', () => {
       const moviePreviewSection = document.querySelector('movie-preview');
       const modalHeaderBtn = document.querySelector('.modal-header button');
 
@@ -56,6 +146,8 @@ class MovieItem extends HTMLElement {
         return null;
       }, 200);
     });
+    
+    
   }
 }
 

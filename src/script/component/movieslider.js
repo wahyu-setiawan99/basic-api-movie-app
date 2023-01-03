@@ -15,9 +15,9 @@ class MovieSlider extends HTMLElement {
 
         <div class="carousel-item active">
           <img src=https://image.tmdb.org/t/p/original${this._sliders[0].backdrop_path} class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-caption ">
             <h3>${this._sliders[0].title}</h3>
-            <p>${this._sliders[0].overview}.</p>
+            <p class="p-2 d-none d-md-block">${this._sliders[0].overview}.</p>
           </div>
         </div>
 

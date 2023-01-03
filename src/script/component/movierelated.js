@@ -21,7 +21,7 @@ class RelatedMovie extends HTMLElement {
       </div>
     `;
 
-    const relatedMoviesChunck = _.chunk(this._related, 8);
+    const relatedMoviesChunck = _.chunk(this._related, 7);
 
     const relatedMoviesWrapper = document.querySelector('.related-movies');
 

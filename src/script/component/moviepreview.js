@@ -52,7 +52,7 @@ class MoviePreview extends HTMLElement {
             </div>
 
             </li>
-            <li><p>Genre : ${this._genres}</p></li>
+            <li><p id="genre-preview">Genre : ${this._genres}</p></li>
             <li>
               <div class="preview_description">
                 <p>${this._preview.overview}</p>

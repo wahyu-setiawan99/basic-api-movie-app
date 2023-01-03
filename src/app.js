@@ -1,8 +1,7 @@
 import './styles/style.css';
-import './script/component/appbar';
 import main from './script/view/main';
 
-import './script/component/searchbar';
+import './script/component/appbar';
 import './script/component/moviepreview';
 import './script/component/movielistdiscover';
 import './script/component/movielistfavorite';
