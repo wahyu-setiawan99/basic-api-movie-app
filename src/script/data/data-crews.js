@@ -1,9 +1,10 @@
 import axios from 'axios';
+import DbMovieKey from './api-collection';
 
 class CrewDetails {
   static searchCrews(personId) {
     const baseUrl = 'https://api.themoviedb.org/3';
-    const apiKey = '2549c839db5e074878d2577ca548bc87';
+    const apiKey = DbMovieKey;
 
     return new Promise((resolve, reject) => {
       const requestGenre = axios.get(`${baseUrl}/genre/movie/list?api_key=${apiKey}`);

@@ -1,9 +1,10 @@
 import axios from 'axios';
+import DbMovieKey from './api-collection';
 
 class DataExtends {
   static getMovieDetail(movieId) {
     const baseUrl = 'https://api.themoviedb.org/3';
-    const apiKey = '2549c839db5e074878d2577ca548bc87';
+    const apiKey = DbMovieKey;
 
     return new Promise((resolve, reject) => {
       const movieDetail = axios.get(`${baseUrl}/movie/${movieId}?api_key=${apiKey}`);
