@@ -5,14 +5,18 @@ const _ = require('lodash');
 
 class CrewModal extends HTMLElement {
   set modal(modal) {
-    this._modal = modal[0];
+    [this._modal, this._movieCredits, this._detailCrew] = modal;
     this._crewPopularity = this._modal.popularity.toFixed(2);
-    this._movieCredits = modal[1];
-    this._detailCrew = modal[2];
 
     this._profilePict = this._modal.profile_path ? `https://image.tmdb.org/t/p/w300${this._modal.profile_path}` : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
-    this._crewAge = this._detailCrew.birthday ? this._detailCrew.deathday === null ? moment(new Date()).diff(moment(this._detailCrew.birthday), 'years') : moment(this._detailCrew.deathday).diff(moment(this._detailCrew.birthday), 'years') : 'xx';
+    if (!this._detailCrew.birthday) {
+      this._crewAge = 'xx';
+    } else if (this._detailCrew.deathday === null) {
+      this._crewAge = moment(new Date()).diff(moment(this._detailCrew.birthday), 'years');
+    } else {
+      this._crewAge = moment(this._detailCrew.deathday).diff(moment(this._detailCrew.birthday), 'years');
+    }
 
     this._status = this._detailCrew.deathday === null ? 'Active' : 'Passed away';
 
@@ -101,20 +105,18 @@ class CrewModal extends HTMLElement {
 
     const recentMovies = document.querySelector('#recent-movies_modal');
 
-    const filteredMovie = this._movieCredits.filter((movie) => movie.backdrop_path && movie.poster_path && movie.genre_ids[0] && movie.release_date);
+    const filteredMovie = this._movieCredits.filter(
+      (movie) => movie.backdrop_path && movie.poster_path
+      && movie.genre_ids[0] && movie.release_date,
+    );
     const movieChunks = _.chunk(filteredMovie, 5);
 
     let noChunk = 0;
     const dropDownMovie = document.querySelector('#drop-down-movie__modal');
 
-    dropDownMovie.addEventListener('click', () => {
-      noChunk += 1;
-      renderMovieModal();
-    });
-
     const renderMovieModal = () => {
-      movieChunks[noChunk]
-        ? movieChunks[noChunk].forEach((movie) => {
+      if (movieChunks[noChunk]) {
+        movieChunks[noChunk].forEach((movie) => {
           const movieItemElement = document.createElement('movie-item');
 
           DataExtends.getMovieDetail(movie.id)
@@ -127,8 +129,15 @@ class CrewModal extends HTMLElement {
             });
 
           recentMovies.appendChild(movieItemElement);
-        }) : null;
+        });
+      }
+      return null;
     };
+
+    dropDownMovie.addEventListener('click', () => {
+      noChunk += 1;
+      renderMovieModal();
+    });
 
     renderMovieModal();
   }

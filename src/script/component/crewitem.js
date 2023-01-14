@@ -14,7 +14,7 @@ class CrewItem extends HTMLElement {
     } else {
       this.actor_image = `https://image.tmdb.org/t/p/w300${crew.profile_path}`;
     }
-    
+
     this.render();
   }
 

@@ -1,7 +1,7 @@
 const moment = require('moment/moment');
 
 class MovieItem extends HTMLElement {
-  constructor () {
+  constructor() {
     super();
     this.shadowDOM = this.attachShadow({ mode: 'open' });
   }
@@ -19,7 +19,6 @@ class MovieItem extends HTMLElement {
   }
 
   render() {
-    
     this.shadowDOM.innerHTML = `    
     <style>
     /* movie item */
@@ -146,8 +145,6 @@ class MovieItem extends HTMLElement {
         return null;
       }, 200);
     });
-    
-    
   }
 }
 

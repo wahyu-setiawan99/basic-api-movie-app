@@ -12,7 +12,6 @@ class MovieSlider extends HTMLElement {
     <div id="movieSliderCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
 
-
         <div class="carousel-item active">
           <img src=https://image.tmdb.org/t/p/original${this._sliders[0].backdrop_path} class="d-block w-100" alt="...">
           <div class="carousel-caption ">

@@ -65,9 +65,20 @@ movie-slider {
   font-size: 18px;
 }
 
+.carousel-caption h3 {
+  font-size: 24px;
+}
+
 .carousel-caption h3:hover {
   cursor: pointer;
   color: red;
+}
+
+.carousel-caption p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 /* end of movie slider */
 
